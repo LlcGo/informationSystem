@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.mapper.UserTbMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.domain.UserTb">
+            <id property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userPassword" column="user_password" jdbcType="VARCHAR"/>
+            <result property="userAccount" column="user_account" jdbcType="VARCHAR"/>
+            <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+            <result property="userState" column="user_state" jdbcType="INTEGER"/>
+            <result property="userRole" column="user_role" jdbcType="INTEGER"/>
+            <result property="userCreate" column="user_create" jdbcType="TIMESTAMP"/>
+            <result property="userBirth" column="user_birth" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,user_name,user_password,
+        user_account,user_phone,user_state,
+        user_role,user_create,user_birth
+    </sql>
+
+    <insert id="add" parameterType="com.lc.domain.UserTb">
+        insert into user_tb  (user_name,user_account,user_password)
+    values  (#{userName},#{userAccount},#{userPassword})
+    </insert>
+    <delete id="delByUserId">
+       delete from user_tb where user_id = #{id}
+    </delete>
+
+    <select id="getAllUser" resultType="com.lc.domain.UserTb">
+        select * from user_tb
+    </select>
+
+<!--    根据账户 密码 查询用户-->
+    <select id="selectUserByNameAndPassword" resultType="com.lc.domain.UserTb">
+        select * from user_tb where user_password = #{userPassword} and user_account  = #{userAccount};
+    </select>
+
+</mapper>

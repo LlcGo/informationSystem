@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.mapper.ProductTbMapper">
+
+    <resultMap id="BaseResultMap" type="com.lc.domain.ProductTb">
+            <id property="productId" column="product_id" jdbcType="BIGINT"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="productInfo" column="product_info" jdbcType="VARCHAR"/>
+            <result property="productInterestRate" column="product_Interest_rate" jdbcType="DOUBLE"/>
+            <result property="productBuy" column="product_buy" jdbcType="DOUBLE"/>
+            <result property="productSell" column="product_sell" jdbcType="DOUBLE"/>
+            <result property="productPhone" column="product_phone" jdbcType="VARCHAR"/>
+            <result property="productUName" column="product_u_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        product_id,product_name,product_info,
+        product_Interest_rate,product_buy,product_sell,
+        product_phone,product_u_name
+    </sql>
+    <select id="getall"  parameterType="com.lc.utils.PageBean" resultMap="BaseResultMap">
+        select * from product_tb limit #{startRow},#{pageSize}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from product_tb
+    </select>
+</mapper>

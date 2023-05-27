@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    引入jdbc文件-->
+    <properties resource="jdbc.properties"/>
+
+    <settings>
+<!--        将_自动映射为驼峰 emp_name:empName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+<!--    取别名-->
+    <typeAliases>
+        <package name="com.lc.domain"/>
+    </typeAliases>
+
+    <environments default="development">
+        <!--        使用id是唯一的表示不能重复-->
+        <environment id="development">
+            <!--            设置事务管理jdbc自己管理 Manage 表示可以被框架管理比如spring-->
+            <transactionManager type="JDBC"/>
+            <!--            POOLED使用数据库连接池连接数据 unpooled不用数据库连接池连接数据-->
+            <!--            JNDI使用上下文中的数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--引入映射文件-->
+    <mappers>
+        <mapper resource="com/lc/mapper/InfoTbMapper.xml"/>
+        <mapper resource="com/lc/mapper/ProductTbMapper.xml"/>
+        <mapper resource="com/lc/mapper/UserTbMapper.xml"/>
+    </mappers>
+</configuration>

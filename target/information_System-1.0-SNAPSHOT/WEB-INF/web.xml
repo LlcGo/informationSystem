@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+
+<!--    用户模块-->
+    <servlet>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>com.lc.controller.UserController</servlet-class>
+    </servlet>
+<!--     产品模块-->
+    <servlet>
+        <servlet-name>ProduceController</servlet-name>
+        <servlet-class>com.lc.controller.ProduceController</servlet-class>
+    </servlet>
+
+
+
+    <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProduceController</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+</web-app>
